@@ -30,4 +30,3 @@ def select_by_dept_name(cursor, dept_name):
             print(row)
     except Exception as e:
         print(e)
-
