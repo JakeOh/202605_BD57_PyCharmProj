@@ -14,11 +14,22 @@ def input_integer(prompt):
     return number
 
 
+def select_by_dept_name(cursor):
+    dept_name = input('부서 이름 입력>> ')
+    oracle.select_by_dept_name(cursor, dept_name)
+
+
+def select_by_dept_no(cursor):
+    dept_no = input_integer('부서 번호 입력>> ')
+    oracle.select_by_dept_no(cursor, dept_no)
+
+
 def show_main_menu():
-    print('\n' + '-' * 50)
-    print('[0]종료 [1]테이블 생성 [2]테이블 삭제')
-    print('-' * 50)
+    print('\n' + '-' * 80)
+    print('[0]종료 [1]테이블 생성 [2]테이블 삭제 [3]전체검색 [4]번호로 검색 [5]이름으로 검색')
+    print('-' * 80)
     menu = input_integer('메뉴 선택>> ')
+
     return menu
 
 
@@ -33,9 +44,17 @@ def main():
                 if menu == 0:
                     run = False  # 무한 반복문을 종료하기 위해서
                 elif menu == 1:
-                    print('TODO: 테이블 생성')
+                    oracle.create_table(cursor)
                 elif menu == 2:
-                    print('TODO: 테이블 삭제')
+                    oracle.drop_table(cursor)
+                elif menu == 3:
+                    oracle.select_all(cursor)
+                elif menu == 4:
+                    select_by_dept_no(cursor)
+                elif menu == 5:
+                    select_by_dept_name(cursor)
+                else:
+                    print('메뉴 번호를 확인하세요.')
 
     print('>>>>> 프로그램 종료 >>>>>')
 
