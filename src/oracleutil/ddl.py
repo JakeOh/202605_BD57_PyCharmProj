@@ -13,7 +13,20 @@ def create_table(cursor):
         print(e)
 
 
+def drop_table(cursor):
+    try:
+        sql = 'drop table dept_ex'
+        cursor.execute(sql)
+        print('테이블 dept_ex 삭제 성공')
+    except Exception as e:
+        print(e)
+
+
 if __name__ == '__main__':
     with oracledb.connect(user=user, password=password, dsn=dsn, port=port) as conn:
         with conn.cursor() as cursor:
-            create_table(cursor)
+            # dept_ex 테이블 생성
+            # create_table(cursor)
+
+            # dept_ex 테이블 삭제
+            drop_table(cursor)
