@@ -1,6 +1,6 @@
 import oracledb
 
-from src.oracleutil.connection import user, password, dsn, port
+from src.oracleutil.connection import USER, PASSWORD, DSN, PORT
 
 
 def create_table(cursor):
@@ -23,7 +23,7 @@ def drop_table(cursor):
 
 
 if __name__ == '__main__':
-    with oracledb.connect(user=user, password=password, dsn=dsn, port=port) as conn:
+    with oracledb.connect(user=USER, password=PASSWORD, dsn=DSN, port=PORT) as conn:
         with conn.cursor() as cursor:
             # dept_ex 테이블 생성
             # create_table(cursor)

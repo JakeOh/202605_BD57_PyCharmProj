@@ -14,31 +14,31 @@ def input_integer(prompt):
     return number
 
 
-def delete_dept_ex(cursor):
+def delete(cursor):
     dept_no = input_integer('삭제할 부서 번호>> ')
     oracle.delete_dept(cursor, dept_no)
 
 
-def update_dept_ex(cursor):
+def update(cursor):
     dept_no = input_integer('업데이트할 부서 번호>> ')
     dept_name = input('업데이트할 부서 이름>> ')
     dept_loc = input('업데이트할 부서 위치>> ')
     oracle.update_dept(cursor, dept_no, dept_name, dept_loc)
 
 
-def insert_dept_ex(cursor):
+def create(cursor):
     dept_no = input_integer('추가할 부서 번호>> ')
     dept_name = input('추가할 부서 이름>> ')
     dept_loc = input('추가할 부서 위치>> ')
     oracle.insert_dept(cursor, dept_no, dept_name, dept_loc)
 
 
-def select_by_dept_name(cursor):
+def read_by_dept_name(cursor):
     dept_name = input('부서 이름 입력>> ')
     oracle.select_by_dept_name(cursor, dept_name)
 
 
-def select_by_dept_no(cursor):
+def read_by_dept_no(cursor):
     dept_no = input_integer('부서 번호 입력>> ')
     oracle.select_by_dept_no(cursor, dept_no)
 
@@ -54,7 +54,7 @@ def show_main_menu():
 
 def main():
     # Oracle에 접속
-    with oracledb.connect(user=oracle.user, password=oracle.password, dsn=oracle.dsn, port=oracle.port) as conn:
+    with oracledb.connect(user=oracle.USER, password=oracle.PASSWORD, dsn=oracle.DSN, port=oracle.PORT) as conn:
         # Cursor를 생성
         with conn.cursor() as cursor:
             run = True
@@ -69,17 +69,17 @@ def main():
                 elif menu == 3:
                     oracle.select_all(cursor)
                 elif menu == 4:
-                    select_by_dept_no(cursor)
+                    read_by_dept_no(cursor)
                 elif menu == 5:
-                    select_by_dept_name(cursor)
+                    read_by_dept_name(cursor)
                 elif menu == 6:
-                    insert_dept_ex(cursor)
+                    create(cursor)
                     conn.commit()  # insert된 내용을 영구 저장.
                 elif menu == 7:
-                    update_dept_ex(cursor)
+                    update(cursor)
                     conn.commit()
                 elif menu == 8:
-                    delete_dept_ex(cursor)
+                    delete(cursor)
                     conn.commit()
                 else:
                     print('메뉴 번호를 확인하세요.')
