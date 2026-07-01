@@ -1,7 +1,8 @@
 def insert_dept(cursor, dept_no, dept_name, location):
     """dept_ex 테이블에 새로운 행(부서번호, 부서이름, 위치)을 추가."""
     try:
-        sql = 'insert into dept_ex values(:dept_no, :dept_name, :location)'
+        sql = 'insert into dept_ex values (:dept_no, :dept_name, :location)'
+        # cursor.execute(sql, dept_no=dept_no, dept_name=dept_name, location=location)
         cursor.execute(sql, {
             'dept_no': dept_no,
             'dept_name': dept_name,
